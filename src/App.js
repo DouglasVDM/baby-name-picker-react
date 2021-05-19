@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { BabyNamesData } from "./BabyNamesData";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       <h3>Baby Names Data</h3> 
       </header>
+      <div style={{border: ".2rem solid green"}}>
+        {BabyNamesData.sort((name1,name2)=>name1.name.locagit addleCompare(name2.name)).map((el) => {
+          return (
+            <div style={{ border: ".1rem solid blue" }} key={el.id}>{el.name}</div>
+          )
+        })
+          }
+      </div>
     </div>
   );
 }
