@@ -1,4 +1,4 @@
-export const BabyNameData = [
+export const BabyNamesData = [
   {
     "id": 0,
     "name": "Zahra",
