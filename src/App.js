@@ -7,7 +7,7 @@ function App() {
        <h3>Baby Names Data</h3> 
       </header>
       <div style={{border: ".2rem solid green"}}>
-        {BabyNamesData.sort((name1,name2)=>name1.name.locagit addleCompare(name2.name)).map((el) => {
+        {BabyNamesData.sort((name1,name2)=>name1.name.localeCompare(name2.name)).map((el) => {
           return (
             <div style={{ border: ".1rem solid blue" }} key={el.id}>{el.name}</div>
           )
