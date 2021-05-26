@@ -1,14 +1,18 @@
 import React from 'react';
-import { BabyNamesData } from "./data";
 
-function BabyNames() {
+function BabyNames({babyList}) {
+
+  const babyFilterList = babyList
+
+  const sortedNames = babyFilterList
+    .sort((name1, name2) => name1.name.localeCompare(name2.name));
+  
   return (
     <div style={{ display: "flex", flexWrap: "wrap", height: "fit-content", border: ".2rem solid green" }}>
-      {BabyNamesData
-        .sort((name1, name2) => name1.name.localeCompare(name2.name))
-        .map((sortedName) => {
+      {sortedNames
+        .map((babyName) => {
 
-          let color = sortedName.sex === "f" ? "#ff000080" : "#00ff0080";
+          let color = babyName.sex === "f" ? "#ff000080" : "#00ff0080";
 
           return (
             <p style={
@@ -19,8 +23,8 @@ function BabyNames() {
                 backgroundColor: color,
                 textAlign: "center"
               }}
-              key={sortedName.id}>
-              {sortedName.name}
+              key={babyName.id}>
+              {babyName.name}
             </p>
           )
         }
