@@ -8,23 +8,16 @@ function App() {
 
   const [input, setInput] = useState('');
   const [babyList, setBabyList] = useState(BabyNamesData);
-  console.log("babyList-before:", babyList);
-/*
-  const dataBaby = (data => {
-    setBabyList(data)
-    setBabyListDefault(data)
-  })
-*/
   
   const updateInput = (input) => {
-    const filtered = babyList.filter(baby => {
+    const newBaby = BabyNamesData
+    const filtered = newBaby.filter(baby => {
       return (
         baby.name.toLowerCase().includes(input.toLowerCase())
       )
     })
     setInput(input);
     setBabyList(filtered);
-    console.log("babyList-after:", babyList);
   }
 
   return (
@@ -34,7 +27,6 @@ function App() {
         <SearchBar input={input} onChange={updateInput} />
         <BabyNames babyList={ babyList }/>
       </header>
-
     </div>
   )
 }
