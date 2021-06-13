@@ -1,17 +1,28 @@
 import React, { useState } from 'react';
+import Favourites from './Favourites';
 
 function BabyNames({ babyList }) {
 
   const babyFilterList = babyList
 
-  const sortedNames = babyFilterList
-    .sort((name1, name2) => name1.name.localeCompare(name2.name));
+  const [favourite, setFavourite] = useState([]);
+  const [sortedNames, setSortedNames] = useState([...babyFilterList]);
+
+
+  sortedNames.sort((name1, name2) => name1.name.localeCompare(name2.name));
   
-  const favouriteBaby = (name) => console.log(name.target);
+  function favouriteBaby(name) {    
+    if (favourite.includes(name)) {
+      setFavourite(favourite.filter(el => el !== name));
+    } else {
+      setFavourite(favourite.concat(name))
+      setSortedNames(sortedNames.filter(el=>el!==name))
+    }    
+  }
   
   return (
     <div>
-      <h3>Favourites</h3>
+      <Favourites favourite={favourite} />
       <div style={{ display: "flex", flexWrap: "wrap", height: "fit-content", border: ".2rem solid green" }}>
         {sortedNames
           .map((babyName) => {
@@ -19,7 +30,7 @@ function BabyNames({ babyList }) {
             let color = babyName.sex === "f" ? "#ff000080" : "#00ff0080";
 
             return (
-              <p style={
+              <p value="" style={
                 {
                   padding: ".5rem",
                   margin: ".2rem",
@@ -28,7 +39,7 @@ function BabyNames({ babyList }) {
                   textAlign: "center"
                 }}
                 key={babyName.id}
-                onClick={favouriteBaby}
+                onClick={() => favouriteBaby(babyName.name)}
               >
                 {babyName.name}
               </p>
